@@ -1,0 +1,42 @@
+{
+  "Binance": {
+    "btc": "1159gPPkk2pzXKiCa9En9hP7N8tCZ7x6hi",
+    "eth": "0xc636D4C672b3d3760b2E759b8aD72546e3156CE9"
+  },
+  "Coinbase": {
+    "btc": "1Je3RohZT6mH1AofjcjMJXgbVgKrJNVohD",
+    "eth": "0x9220BE4709Eb37E5e0673A5DDC084Ada4e42E628"
+  },
+  "Kraken": {
+    "btc": "157EDTdFDEymZDPjKX8RWbuxVYREForUAP",
+    "eth": "0x2910543Af39abA0Cd09dBb2D50200b3E800A63D2"
+  },
+  "Bitfinex": {
+    "btc": "0x2910543Af39abA0Cd09dBb2D50200b3E800A63D2",
+    "eth": "0x7180EB39A6264938FDB3EfFD7341C4727c382153"
+  },
+  "Bithumb": {
+    "btc": "1BhrNoLRT62o3vdUnXDm62hBpa55goQC8h",
+    "eth": "0x3052cD6BF951449A984fe4B5a38B46AEF9455c8E"
+  },
+  "Bitstamp": {
+    "btc": "1HhVMYrxCUriKL3jnbXa6y595xCWhHj7sG",
+    "eth": "0x1522900B6daFac587d499a862861C0869Be6E428"
+  },
+  "Gemini": {
+    "btc": "1KjZBQ93a168QcrrPTSSNXqCH2PSMwMRFH",
+    "eth": "0x183b1Ffb0Aa9213b9335AdFAd82E47bfb02f8d24"
+  },
+  "Bittrex": {
+    "btc": "15VyEAT4uf7ycrNWZVb1eGMzrs21BH95Va",
+    "eth": "0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
+  },
+  "Poloniex": {
+    "btc": "19YqztHmspv2egyD6jQM3yn81x5t5krVdJ",
+    "eth": "0xB83b76f35cF6b2149B34Ee092B3Fc93b7Bb54A8D"
+  },
+  "Huobi": {
+    "btc": "1MCPcGbnrv4Uv9HcrjoQwzJaEFGrwzE6Pk",
+    "eth": "0x5C985E89DDe482eFE97ea9f1950aD149Eb73829B"
+  }
+}
