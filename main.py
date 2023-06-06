@@ -10,6 +10,11 @@ import getpass
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+
+### For Prototyping
+import warnings
+warnings.filterwarnings('ignore')
+
 def _setup():
     load_dotenv()
     API_KEY = os.getenv("API_KEY")
@@ -25,6 +30,10 @@ def _setup():
 def call_clusters_endpoint(address,asset,headers):
     url = f'https://iapi.chainalysis.com/clusters/{address}/{asset}/summary?outputAsset=NATIVE'
     r = requests.get(url,headers=headers)
+    if r.status_code == 200:
+        print(f"HTTP 200 for {address} on {asset}")
+    else:
+        print(f"Error {r.status_code} during API request for {address} on {asset}")
     response = json.loads(r.text)
     return response
 
