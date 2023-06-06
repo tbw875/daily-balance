@@ -5,6 +5,7 @@ import requests
 from dotenv import load_dotenv 
 import os
 import time
+import datetime
 import smtplib
 import getpass
 from email.mime.multipart import MIMEMultipart
@@ -109,10 +110,12 @@ def main():
                                    f"The balance for {asset} on {exchange} has changed by {balance_change:.2%}.",
                                    recipient_email, sending_email, smtp_url, smtp_port, smtp_user, smtp_pass)
                         
-        # Sleep for the specified interval before making the next request
-        time.sleep(time_interval)
-
         df.to_csv('balance_data.csv',index=False)
+        # Sleep for the specified interval before making the next request
+        next_batch_time = datetime.datetime.now() + datetime.timedelta(seconds=time_interval)
+        print(f"Waiting {time_interval} until next batch.")
+        print(f"Next batch will begin at {next_batch_time}")
+        time.sleep(time_interval)
 
 # Start the script
 if __name__ == "__main__":
