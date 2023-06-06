@@ -49,7 +49,7 @@ def set_alerting_parameters():
     smtp_url = input("Set SMTP URL (e.g. smtp.google.com): ")
     smtp_port = float(input("Set SMTP Port (e.g. 587): "))
     smtp_user = input("Set SMTP Username: ")
-    smtp_pass = getpass("Set SMTP Password: ")
+    smtp_pass = getpass.getpass(prompt = "Set SMTP Password: ")
     return recipient_email, sending_email, smtp_url, smtp_port, smtp_user, smtp_pass
 
 def send_email(subject, body, to_email, from_email, smtp_server, smtp_port, smtp_user, smtp_pass):
@@ -102,6 +102,8 @@ def main():
                         
         # Sleep for the specified interval before making the next request
         time.sleep(time_interval)
+
+        df.to_csv('balance_data.csv',index=False)
 
 # Start the script
 if __name__ == "__main__":
