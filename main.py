@@ -46,6 +46,14 @@ def set_time_interval():
     # Convert input hours to seconds.
     return time_hours * 60 * 60
 
+def round_time(dt, round_to):
+    """
+    Round a datetime object to the closest `round_to` minutes.
+    """
+    seconds = (dt.replace(tzinfo=None) - dt.min).seconds
+    rounding = (seconds+round_to/2) // round_to * round_to
+    return dt + datetime.timedelta(0, rounding-seconds, -dt.microsecond)
+
 def set_alert_threshold():
     # Get input from user
     threshold = float(input("Enter the alert threshold as a decimal: "))
@@ -75,6 +83,7 @@ def send_email(subject, body, to_email, from_email, smtp_server, smtp_port, smtp
     server.sendmail(from_email, to_email, text)
     server.quit()
 
+
 def main():
     # Initial setup
     exchange_addresses, headers = _setup()
@@ -98,7 +107,7 @@ def main():
                 balance = response.get('balance')
                 
                 # Append the balance and current date to the dataframe
-                df = df.append({'Date': pd.to_datetime('today'), f'{exchange}_{asset}': balance}, ignore_index=True)
+                df = df.append({'Date': round_time(pd.to_datetime('today'), 10*60), f'{exchange}_{asset}': balance}, ignore_index=True)
                 
                 # If there are at least two entries, calculate the balance change
                 if len(df) >= 2:
@@ -106,9 +115,11 @@ def main():
                     
                     # If the balance change exceeds the threshold, send an email alert
                     if abs(balance_change) >= alert_threshold:
-                        send_email("Balance Alert",
-                                   f"The balance for {asset} on {exchange} has changed by {balance_change:.2%}.",
-                                   recipient_email, sending_email, smtp_url, smtp_port, smtp_user, smtp_pass)
+                        print(f"Alert: Balance for {asset} on {exchange} has changed by {balance_change:.2%}.")
+                        print("Sending alert email...")
+                        #send_email("Balance Alert",
+                        #           f"The balance for {asset} on {exchange} has changed by {balance_change:.2%}.",
+                        #           recipient_email, sending_email, smtp_url, smtp_port, smtp_user, smtp_pass)
                         
         df.to_csv('balance_data.csv',index=False)
         # Sleep for the specified interval before making the next request
