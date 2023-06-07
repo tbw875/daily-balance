@@ -50,7 +50,7 @@ def round_time(dt, round_to):
     """
     Round a datetime object to the closest `round_to` minutes.
     """
-    seconds = (dt.replace(tzinfo=None) - dt.min).seconds
+    seconds = (dt - dt.min).seconds
     rounding = (seconds+round_to/2) // round_to * round_to
     return dt + datetime.timedelta(0, rounding-seconds, -dt.microsecond)
 
@@ -107,7 +107,7 @@ def main():
                 balance = response.get('balance')
                 
                 # Append the balance and current date to the dataframe
-                df = df.append({'Date': round_time(pd.to_datetime('today'), 10*60), f'{exchange}_{asset}': balance}, ignore_index=True)
+                df = df.append({'Date': round_time(datetime.datetime.now(), 10*60), f'{exchange}_{asset}': balance}, ignore_index=True)
                 
                 # If there are at least two entries, calculate the balance change
                 if len(df) >= 2:
